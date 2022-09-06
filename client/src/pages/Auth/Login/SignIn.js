@@ -27,8 +27,8 @@ const SignIn = () => {
             toast.error(message);
         }
         if (isSuccess) {
-            // navigate('/dashboard');
-            navigate('/profile');
+            navigate('/dashboard');
+            // navigate('/profile');
         }
         dispatch(reset());
     }, [user, navigate, isSuccess, isError, isLoading, dispatch, message]);

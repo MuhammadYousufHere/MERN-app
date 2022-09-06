@@ -11,8 +11,8 @@ const initialState = {
     error: {},
 };
 
-export const getCurrentUser = createAsyncThunk(API_URL + 'me', async (user) => {
-    profileService.getCurrentProfile(user);
+export const getCurrentUser = createAsyncThunk(API_URL + 'me', async () => {
+    return await profileService.getCurrentProfile();
 });
 
 const profileSlice = createSlice({

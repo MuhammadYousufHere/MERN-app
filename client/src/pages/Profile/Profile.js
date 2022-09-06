@@ -6,13 +6,10 @@ import { Link } from 'react-router-dom';
 const Profile = () => {
     const dispatch = useDispatch();
     const { profile } = useSelector((state) => state.profile);
-    const auth = useSelector((state) => state.auth);
-    // console.log(profile);
-    console.log(auth.user.token);
-
+    console.log(profile);
     useEffect(() => {
-        getCurrentUser(auth.user.token);
-    }, [auth.user.token]);
+        dispatch(getCurrentUser());
+    }, [dispatch]);
     return (
         <div className='profile-container'>
             Profiless

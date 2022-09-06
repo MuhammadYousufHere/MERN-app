@@ -1,17 +1,16 @@
 import axios from 'axios';
-import authHeader from './util';
 
 const API_URL = 'http://localhost:8080/api/';
-export const setAuth = (token) => {
-    // token come from local storage
-    // doing b/c we need send it with every request instead choosing which req to send with
-    if (token) {
-        // header we wanna set : x-auth-token to dcrypt token
-        axios.defaults.headers.common['x-auth-token'] = token;
-    } else {
-        delete axios.defaults.headers.common['x-auth-token'];
-    }
-};
+// export const setAuth = (token) => {
+//     // token come from local storage
+//     // doing b/c we need send it with every request instead choosing which req to send with
+//     if (token) {
+//         // header we wanna set : x-auth-token to dcrypt token
+//         axios.defaults.headers.common['x-auth-token'] = token;
+//     } else {
+//         delete axios.defaults.headers.common['x-auth-token'];
+//     }
+// };
 // Register
 const config = {
     header: {
@@ -29,9 +28,7 @@ const register = async (userData) => {
 // login
 
 const login = async (userData) => {
-    const response = await axios.post(API_URL + 'auth', userData, {
-        headers: authHeader(),
-    });
+    const response = await axios.post(API_URL + 'auth', userData);
 
     if (response.data) {
         localStorage.setItem('token', JSON.stringify(response.data));

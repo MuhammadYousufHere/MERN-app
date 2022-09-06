@@ -1,0 +1,46 @@
+.post-item-container {
+    height: 100%;
+    .p-item-body {
+        .author-info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .left,
+            .right {
+                display: flex;
+            }
+            .left {
+                // align-items: center;
+                gap: 0.5rem;
+            }
+            .info,
+            .timestamp {
+                margin-top: 0.5rem;
+            }
+            .info {
+                h4 {
+                    font-family: Archivo-Bold;
+                }
+                p {
+                    font-family: Archivo-Med;
+                    font-size: 14px;
+                }
+            }
+            .right {
+                align-self: flex-start;
+            }
+            .avatar {
+                width: 60px;
+                height: 60px;
+                border-radius: 100%;
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
+        .post-text {
+            padding: 0.4rem 2rem 0.5rem 4.3rem;
+        }
+    }
+}

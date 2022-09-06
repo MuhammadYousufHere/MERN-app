@@ -45,12 +45,10 @@ router.post(
         }
         // should setup middleware first
         const { email, password } = req.body;
-        console.log(req.body, 'I dit it');
 
         try {
             // see if client exists
             let user = await User.findOne({ email });
-            console.log(user, 'my user');
             if (!user) {
                 return res.status(400).json({
                     msg: 'Invalid Credentials',
@@ -60,7 +58,6 @@ router.post(
             //check if match
 
             const isMatch = bcrypt.compareSync(password, user.password);
-            console.log(isMatch, 'Matching?');
             if (!isMatch) {
                 return res.status(400).json({
                     msg: 'Invalid Credentials',

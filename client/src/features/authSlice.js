@@ -1,7 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import authService from './authService';
-import { setAuth } from './authService';
-//
 const API_URl = 'http://localhost:8080';
 
 // Get user from local storage
@@ -11,9 +9,10 @@ const token = JSON.parse(localStorage.getItem('token'));
 const initialState = {
     user: token ? token : null,
     isError: false,
-    isSuccess: false,
-    isLoading: false,
+    isAuthenticated: null,
+    isLoading: true,
     message: '',
+    isSuccess: false,
 };
 
 // Register User
@@ -34,18 +33,6 @@ export const register = createAsyncThunk(
     }
 );
 
-// load user
-// const loadUser =createAsyncThunk( async () => {
-//     if (localStorage.token) {
-//         setAuth(token);
-//     }
-//     try {
-//       const res = await
-//     } catch (error) {
-
-//     }
-// });
-// login User
 export const login = createAsyncThunk(
     API_URl + '/api/auth',
     async (user, thunkAPI) => {
@@ -72,7 +59,6 @@ const authSlice = createSlice({
     reducers: {
         reset: (state) => {
             state.isLoading = false;
-            state.isSuccess = false;
             state.isError = false;
             state.message = '';
         },
@@ -84,31 +70,39 @@ const authSlice = createSlice({
             })
             .addCase(register.fulfilled, (state, action) => {
                 state.isLoading = false;
-                state.isSuccess = true;
+                state.isAuthenticated = true;
                 state.user = action.payload;
+                state.isSuccess = true;
             })
             .addCase(register.rejected, (state, action) => {
                 state.isLoading = false;
                 state.isError = true;
                 state.message = action.payload;
+                state.isAuthenticated = null;
                 state.user = null;
+                state.isSuccess = false;
             })
             .addCase(login.pending, (state) => {
                 state.isLoading = true;
             })
             .addCase(login.fulfilled, (state, action) => {
                 state.isLoading = false;
-                state.isSuccess = true;
                 state.user = action.payload;
+                state.isAuthenticated = true;
+                state.isSuccess = true;
             })
             .addCase(login.rejected, (state, action) => {
                 state.isLoading = false;
                 state.isError = true;
                 state.message = action.payload;
                 state.user = null;
+                state.isSuccess = false;
+                state.isAuthenticated = null;
             })
             .addCase(logout.fulfilled, (state) => {
                 state.user = null;
+                state.isAuthenticated = null;
+                state.isSuccess = false;
             });
     },
 });

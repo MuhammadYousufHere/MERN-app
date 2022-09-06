@@ -1,0 +1,26 @@
+$color: rgb(216, 215, 215);
+.actionbar-container {
+    padding: 1rem 0;
+    .actionbar-body {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        // text-align: center;
+        border: 1px solid $color;
+        .like {
+            // display: flex;
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            gap: 0.3rem;
+            p {
+            }
+        }
+        .like,
+        .comment {
+            padding: 1rem 0;
+            width: 50%;
+            text-align: center;
+        }
+    }
+}

@@ -1,3 +1,5 @@
+$light: #f7f7f7;
+
 @font-face {
     font-family: Archivo-Bold;
     src: url('./assets/fonts/archivo.bold.ttf');
@@ -152,6 +154,7 @@ h1 {
 body {
     /* overflow: hidden; */
     font-family: Archivo;
+    background-color: $light;
 }
 
 .footer-tagline {

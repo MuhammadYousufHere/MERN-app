@@ -1,0 +1,22 @@
+.comment-form-container {
+    .comment-form-body {
+        display: flex;
+        // padding: 0.3rem 1rem 0.3rem 2rem;
+        // padding: 0.3rem 1rem;
+        gap: 0.5rem;
+        align-items: center;
+        align-items: flex-start;
+        .avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 100%;
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+        .textarea {
+            width: 100% !important;
+        }
+    }
+}

@@ -1,13 +1,11 @@
 import axios from 'axios';
+import authHeader from './util';
 
 const API_URL = 'http://localhost:8080/api/profile/me';
-const config = {
-    header: 'x-auth-token',
-};
-const getCurrentProfile = async (user) => {
+
+const getCurrentProfile = async () => {
     try {
-        const res = await axios.get(API_URL, config);
-        console.log(res);
+        const res = await axios.get(API_URL, { headers: authHeader() });
         return res.data;
     } catch (error) {
         const msg = error.response.statusText;

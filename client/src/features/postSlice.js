@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import postService from './postService';
-import axios from 'axios';
 const API_URL = 'http://localhost:8080/api/posts';
 
 const initialState = {
@@ -11,8 +10,7 @@ const initialState = {
 };
 
 export const getUserPost = createAsyncThunk(API_URL, async () => {
-    const response = await axios.get(API_URL);
-    return response.data;
+    return await postService.getPost();
 });
 const postSlice = createSlice({
     name: 'post',
