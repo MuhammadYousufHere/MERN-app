@@ -1,0 +1,31 @@
+.footer-container {
+    font-family: Archivo;
+    color: #fff;
+    background-color: #e2a449;
+    background-color: #0f172c;
+    background-color: #f1ece8;
+    box-shadow: rgb(30 30 30 / 0.5%) -4px 4px 12px 0.2px;
+
+    .footer-body {
+        padding: 3rem 2rem 0.5rem 2rem;
+        background: rgb(17, 18, 40);
+        border-top-left-radius: 15vmin;
+
+        .bottom {
+            text-align: center;
+            p {
+                a {
+                    color: inherit;
+                    text-decoration: none;
+                }
+                line-height: 1;
+                font-size: 14px;
+                color: #aaa;
+            }
+            .my {
+                font-family: Archivo-Bold;
+                font-size: 16px;
+            }
+        }
+    }
+}

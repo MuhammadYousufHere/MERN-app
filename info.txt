@@ -1,0 +1,100 @@
+user:yousufbecomeMern
+pass: iamMERN_1267
+
+mongodb+srv://yousufbecomeMern:iamMERN_1267@newdevconnector.eerb9dl.mongodb.net/?retryWrites=true&w=majority
+
+mongodb+srv://yousufbecomeMern:<password>@newdevconnector.eerb9dl.mongodb.net/?retryWrites=true&w=majority
+
+* Replace password
+
+Next: Create Express Backend / server
+
+
+nawazthewinner@gmail.com
+iamnawazwinner
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjMxNWEyZWVjOWRlZTUxZjJiYWQyOGMxIn0sImlhdCI6MTY2MjM2MjM1MCwiZXhwIjoxNjYyMzk4MzUwfQ.TEsU7exEJLvBTe_gEU-4rr1cHdhYtydg4obULW0KVlk
+
+
+
+npm i express express-validator bcryptjs config 
+gravatar jsonwebtoken mongoose request
+
+
+Next : Mongoose Model , i.e to register user and stuff..
+in order to interact with our database we need model for every/each resources
+
+to create model we need scheema which holds differet fields we wants in perticular resource 
+
+
+Next : Implement User authentcation
+
+Next: we could use Passport as a middleware but it's too heavy unless you use twitter / fb login
+
+we will use custom
+
+
+
+{
+    "companay":"Hala Soft INC.",
+    "skills":"Node JS,JavaScript,HTM5L,CSS3,React JS, Bootstrap",
+    "status":"Developer",
+    "youtube":"youtube.com/codinginkarachi",
+    "facebook":"facebook.com/muhammadyousufhere",
+    "bio":"I am MERN Developer and instructor for Coding in Karachi",
+    "githubusername":"Muhammad_yousuf_here",
+    "website":"www.myousufdev.com"
+}
+
+{
+    "name":"Muhammad Yousuf",
+    "email":"codinginkarachi@gmail.com",
+    "password":"mypassword"
+}
+{
+    "companay":"ibex solutions, inc",
+    "title":"Frontend developer",
+    "current":true,
+    "from":"13-06-2022",
+
+    "to":"25-08-2022",
+    "description":"I wprked as frontend developer to bridge the gap between ui/ux designer to implemenet designs into actuall code.",
+    "location":"sky tower, clifton, Karachi,PK"
+}
+
+{
+    "school":"University of karachi",
+    "fieldofstudy":"MATHEMATICS",
+    "degree":"Msc MATHEMATICS",
+    "location":"karachi",
+    "from":"01-01-2018",
+    "to":"03-23-2022",
+    "descripton":"I wasted my 4 year there."
+}
+
+
+Axois Post 
+
+{
+            const newUser = {
+                name,
+                email,
+                password,
+            };
+            try {
+                const config = {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                };
+
+                const body = JSON.stringify(newUser);
+                const res = await axios.post(
+                    'http://localhost:8080/api/user',
+                    body,
+                    config
+                );
+                console.log(res.data);
+            } catch (error) {
+                console.log(error);
+            }
+        }

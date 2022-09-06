@@ -1,0 +1,22 @@
+.dropdown-container {
+    .dropdown-body {
+        display: flex;
+        align-items: center;
+        border: 2px solid #4f9ebd;
+        border-radius: 10vmin 0;
+        background-color: whitesmoke;
+        overflow: hidden;
+        padding: 0 1.65rem;
+
+        select {
+            -webkit-appearance: none;
+            outline: none;
+            width: 90%;
+            padding: 1rem 0;
+            border: none;
+            font-size: 17px;
+            background-color: transparent;
+            color: #55595c;
+        }
+    }
+}

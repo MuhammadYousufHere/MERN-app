@@ -1,0 +1,41 @@
+.input-group {
+    // margin: 0.2rem;
+    box-shadow: none;
+    // background: rgba(0, 0, 0, 0.07);
+    // background-color: antiquewhite;
+    border-color: transparent;
+    border-radius: 10vmin 0;
+    padding: 0.5rem 20px;
+    border: 2px solid #f44c66;
+    border: 2px solid #4f9ebd;
+    background-color: whitesmoke;
+
+    input {
+        outline: none;
+        border: none;
+        color: #55595c;
+        width: 90%;
+        padding: 0.6rem 0.4rem;
+        font-size: 17px;
+        border-radius: 100vmin;
+
+        font-family: Archivo-Reg;
+        background-color: whitesmoke;
+    }
+    input:focus::placeholder {
+        color: transparent;
+    }
+    .icon {
+        color: #55595c;
+    }
+}
+.error-sec {
+    display: flex;
+    padding: 2px 6px 5px 6px;
+    gap: 0.3rem;
+    .error {
+        color: #dd1512;
+        font-family: Archivo-Reg !important;
+        font-size: 17px;
+    }
+}

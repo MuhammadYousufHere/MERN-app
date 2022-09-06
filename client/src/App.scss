@@ -1,0 +1,161 @@
+@font-face {
+    font-family: Archivo-Bold;
+    src: url('./assets/fonts/archivo.bold.ttf');
+}
+@font-face {
+    font-family: Archivo-Reg;
+    src: url('./assets/fonts/Archivo\ Regular\ 400.ttf');
+}
+@font-face {
+    font-family: Archivo-Med;
+    src: url('./assets/fonts/archivo.medium.ttf');
+}
+@font-face {
+    font-family: Archivo-SBold;
+    src: url('./assets/fonts/Archivo\ SemiBold\ 600.ttf');
+}
+@font-face {
+    font-family: Archivo-Italic;
+    src: url('./assets/fonts/archivo.medium-italic.ttf');
+}
+@font-face {
+    font-family: BoronB;
+    src: url('./assets/fonts/BaronNeueBold.otf');
+}
+@font-face {
+    font-family: BoronM;
+    src: url('./assets/fonts/BaronNeue.otf');
+}
+@font-face {
+    font-family: Intro;
+    src: url('./assets/fonts/Intro.otf');
+}
+@font-face {
+    font-family: LimeDays;
+    src: url('./assets/fonts/Lime-Days-400.otf');
+}
+@font-face {
+    font-family: Ubunto;
+    src: url('./assets/fonts/Ubuntu-Bold.ttf');
+}
+@font-face {
+    font-family: UbuntoMed;
+    src: url('./assets/fonts/Ubuntu-Medium.ttf');
+}
+@font-face {
+    font-family: UbuntoIt;
+    src: url('./assets/fonts/Ubuntu-BoldItalic.ttf');
+}
+@font-face {
+    font-family: UbuntoReg;
+    src: url('./assets/fonts/Ubuntu-Regular.ttf');
+}
+@font-face {
+    font-family: Segoe;
+    src: url('./assets/fonts/Segoe\ UI.ttf'),
+        url('./assets/fonts/Segoe\ UI.woff');
+}
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+menu,
+nav,
+output,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: inherit;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+h1 {
+    font-family: Archivo;
+}
+body {
+    /* overflow: hidden; */
+    font-family: Archivo;
+}
+
+.footer-tagline {
+    text-align: center;
+    padding: 10px;
+    font-family: Archivo;
+}

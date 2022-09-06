@@ -1,0 +1,33 @@
+.createProfile-container {
+    padding: 5rem 1rem 1rem 1rem;
+    .createProfile-body {
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px,
+            rgba(0, 0, 0, 0.23) 0px 3px 6px;
+        padding: 1rem;
+        background: url('../../assets/bg5.jpg');
+        border-radius: 12vmin 2vmin;
+
+        .social {
+            .link {
+                display: flex;
+                margin: 1rem 0;
+                align-items: center;
+                justify-content: center;
+                gap: 0.5rem;
+                img {
+                }
+            }
+        }
+        .title {
+            font-family: Archivo-Med;
+            color: #302357;
+            text-align: center;
+            background-color: rgb(203, 199, 199);
+            padding: 1rem;
+            border-radius: 12vmin 0;
+            margin: 0.5rem 0 1rem 0;
+            span {
+            }
+        }
+    }
+}

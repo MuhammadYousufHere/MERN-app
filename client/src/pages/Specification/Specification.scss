@@ -1,0 +1,34 @@
+.specification-container {
+    // background: #bbdde9;
+    background: url('../../assets/bg5.jpg');
+    background-repeat: no-repeat;
+    background-position: 70%;
+    .spec-body {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        gap: 2rem;
+        padding: 2rem 0;
+        .box {
+            text-align: center;
+            width: 80%;
+            box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+            padding: 0.5rem;
+            border-bottom-right-radius: 20vmin;
+            border-top-left-radius: 20vmin;
+            // background-color: rgb(17 24 39/1);
+            background-color: hsl(186, 100%, 94%);
+
+            img {
+                width: 160px;
+                height: 160px;
+            }
+            h3 {
+                font-size: 1.2rem;
+                font-family: Archivo;
+                color: #302357;
+            }
+        }
+    }
+}

@@ -1,0 +1,7 @@
+{
+  "mongoURI":
+        "mongodb+srv://yousufbecomeMern:iamMERN_1267@newdevconnector.eerb9dl.mongodb.net/?retryWrites=true&w=majority",
+  "jwtSecret":"IwasRejected",
+   "githubClientID":"a37fa4494a6c7cca909c",
+   "githubClientSecret":"e28e4195cd4c4e210a90d5ff3f49473d9dd3077f"
+}

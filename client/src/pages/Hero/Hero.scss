@@ -1,0 +1,82 @@
+$primary: rgba(54, 57, 61, 1);
+$softDark: #29232e;
+.hero-container {
+    background-color: #6c7983;
+    background-color: #4f9ebf;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    .hero-body {
+        padding: 5rem 1rem 2rem 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+        img {
+            width: 250px;
+            height: 250px;
+        }
+        .button {
+            color: #242d3e;
+            font-size: 17px;
+            line-height: 24px;
+            letter-spacing: 0.01em;
+            list-style-type: none;
+            margin: 0;
+            border: 2px solid #24293d;
+
+            // border-top-right-radius: 10vmin;
+            // border-bottom-left-radius: 10vmin;
+            border-top-left-radius: 10vmin;
+            border-bottom-right-radius: 10vmin;
+            height: 50px;
+            width: 180px;
+            font-family: Archivo-SBold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #24293d;
+
+            box-shadow: rgb(0 0 0 / 40%) 0px 4px 12px 0.2px;
+            &:hover {
+                background-color: hsl(228deg 25% 19%);
+                color: white;
+            }
+            a {
+                text-decoration: none;
+                color: inherit;
+            }
+            // margin-bottom: 20px;
+        }
+        .text {
+            // position: absolute;
+            margin: -2.7rem 0 0rem 0;
+            h1 {
+                font-size: 3.2rem;
+                line-height: 0.85;
+                color: $primary;
+                color: #29232e;
+                color: #333333;
+            }
+
+            h1:nth-of-type(3) {
+                letter-spacing: 8px;
+            }
+            p {
+                font-size: larger;
+                font-family: Archivo-SBold;
+                color: #333333;
+            }
+        }
+    }
+}
+.elementor-shape-fill {
+    fill: #4f9ebf;
+}
+.bg {
+    // background: linear-gradient(-131deg, #79233c, #79233c, #79233c);
+    background: #f1ece8;
+}

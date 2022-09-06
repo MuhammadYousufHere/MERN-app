@@ -1,0 +1,69 @@
+$softDark: #29232e;
+.signup-container {
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    flex-direction: column;
+    background: url('../../../assets/bg5.jpg');
+    background-size: 100%;
+    .signup-body {
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px,
+            rgba(0, 0, 0, 0.23) 0px 3px 6px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem 0.4rem 2rem 0.4rem;
+        border-radius: 25vmin 12px;
+        background: transparent;
+        .text {
+            margin: 5px 0 10px 0;
+            h1 {
+                font-family: Archivo-Bold;
+                font-size: 2rem;
+                color: $softDark;
+            }
+            p {
+                font-family: Archivo-Bold;
+                color: $softDark;
+                letter-spacing: 3px;
+                word-spacing: 4px;
+                margin: 0.6rem 0;
+                color: #212529 !important;
+            }
+        }
+        .logo {
+            width: 70px;
+            height: 70px;
+
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+        h2 {
+            font-family: Archivo-Bold;
+            color: #212529 !important;
+        }
+        p {
+            font-family: Archivo-SBold;
+        }
+
+        .already-confirm {
+            margin-top: 20px;
+            p {
+                color: $softDark;
+                color: #212529 !important;
+            }
+            a {
+                text-decoration: none;
+                color: #3260d6;
+            }
+        }
+    }
+}
