@@ -2,6 +2,7 @@ import React from 'react';
 import './App.scss';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import PrivateRoute from './Routes/PrivateRoute';
 import 'react-toastify/dist/ReactToastify.css';
 import Home from './pages/Home/Home';
 import Register from './pages/Register/Register';
@@ -12,6 +13,7 @@ import CreateProfile from './pages/CreateProfile/CreateProfile';
 import Profile from './pages/Profile/Profile';
 import NotFound from './pages/NotFound/NotFound';
 import Posts from './pages/Posts/Posts';
+import authHeader from './features/util';
 const App = () => {
     return (
         <React.Fragment>
@@ -20,11 +22,13 @@ const App = () => {
                 <Route path='/register-page' element={<Register />} />
                 <Route path='/signin' element={<SignIn />} />
                 <Route path='/signup' element={<Signup />} />
-                <Route path='/profile' element={<Profile />} />
 
-                <Route path='/dashboard' element={<Dashboard />} />
-                <Route path='/posts' element={<Posts />} />
-                <Route path='/create-profile' element={<CreateProfile />} />
+                <Route element={<PrivateRoute />}>
+                    <Route path='/dashboard' element={<Dashboard />} />
+                    <Route path='/posts' element={<Posts />} />
+                    <Route path='/create-profile' element={<CreateProfile />} />
+                    <Route path='/profile' element={<Profile />} />
+                </Route>
                 {/* Catch all - replace with 404 component if you want */}
                 <Route path='*' element={<Navigate to='/404' replace />} />
                 <Route path='/404' element={<NotFound />} />

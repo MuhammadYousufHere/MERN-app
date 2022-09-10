@@ -20,8 +20,8 @@ router.get('/me', auth, async (req, res) => {
         );
 
         if (!profile) {
-            return res.status(400).json({
-                msg: "Oops! it's look like there is no user that you are looking for",
+            return res.status(404).json({
+                msg: 'Oops! No user found.',
             });
         }
         res.json(profile);
@@ -46,7 +46,7 @@ router.post('/', [
             return res.status(500).json({ errors: errors.array() });
         }
         const {
-            companay,
+            company,
             website,
             location,
             bio,
@@ -63,7 +63,7 @@ router.post('/', [
         // Build profile object
         const profileFields = {};
         profileFields.user = req.user.id;
-        if (companay) profileFields.companay = companay;
+        if (company) profileFields.company = company;
         if (website) profileFields.website = website;
         if (bio) profileFields.bio = bio;
         if (location) profileFields.location = location;

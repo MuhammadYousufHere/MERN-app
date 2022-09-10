@@ -14,7 +14,8 @@ nawazthewinner@gmail.com
 iamnawazwinner
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjMxNWEyZWVjOWRlZTUxZjJiYWQyOGMxIn0sImlhdCI6MTY2MjM2MjM1MCwiZXhwIjoxNjYyMzk4MzUwfQ.TEsU7exEJLvBTe_gEU-4rr1cHdhYtydg4obULW0KVlk
 
-
+saraali@gmail.com
+iamsaraali
 
 npm i express express-validator bcryptjs config 
 gravatar jsonwebtoken mongoose request

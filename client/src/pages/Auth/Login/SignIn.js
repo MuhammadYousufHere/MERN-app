@@ -71,7 +71,7 @@ const SignIn = () => {
                 <section className='form-area'>
                     <div className='text'>
                         <h1>Sign In</h1>
-                        <p>Log in to your accout</p>
+                        <p>Sign in to your account</p>
                     </div>
                     <form onSubmit={handleSubmit}>
                         <Input

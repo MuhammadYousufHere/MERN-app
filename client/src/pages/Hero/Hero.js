@@ -19,9 +19,11 @@ const Hero = () => {
                         </p>
                         {/* <p>Connecto is the easiest way to find and engage with top professionals around the world</p> */}
                     </div>
-                    <div className='button'>
-                        <Link to='/signup'>Sign Up</Link>
-                    </div>
+                    {/* <div className='button'>/ */}
+                    <Link className='button' to='/signup'>
+                        Sign Up
+                    </Link>
+                    {/* </div> */}
                 </div>
             </div>
             <svg

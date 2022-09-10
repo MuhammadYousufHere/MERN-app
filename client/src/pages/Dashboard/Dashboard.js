@@ -1,21 +1,39 @@
+import { useCallback, useEffect, useState } from 'react';
 import Navbar from '../../components/Navbar/Navbar';
 import './Dashboard.scss';
-import avatar from '../../assets/avatar-girl.png';
 import edu from '../../assets/edu.png';
 import bag from '../../assets/bag.png';
-import user1 from '../../assets/userman.png';
 
-import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import user1 from '../../assets/userman.png';
+import { Link, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+// eslint-disable-next-line
+import { getCurrentUser } from '../../features/profileSlice';
 import { reset, logout } from '../../features/authSlice';
+import avatar from '../../assets/avatar-girl.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faPlusCircle,
-    faStar,
+    // faStar,
     faTimes,
 } from '@fortawesome/free-solid-svg-icons';
+import { faStar } from '@fortawesome/free-regular-svg-icons';
+import FooterLine from '../../components/FooterLine';
 
 const Dashboard = () => {
+    const dispatch = useDispatch();
+    const naviagete = useNavigate();
+
+    //
+    //
+    const { loading, exists } = useSelector((state) => state.profile);
+    const { user } = useSelector((state) => state.auth);
+    const { name } = user;
+
+    useEffect(() => {
+        dispatch(getCurrentUser());
+    }, [dispatch]);
+
     const handleExperience = () => {
         console.log('clicked');
     };
@@ -25,14 +43,12 @@ const Dashboard = () => {
     const handleEdit = () => {
         console.log('clicked');
     };
-    const naviagete = useNavigate();
-    const dispatch = useDispatch();
-    const { user } = useSelector((state) => state.auth);
     const onLogout = () => {
         dispatch(logout());
         dispatch(reset());
         naviagete('/');
     };
+    // eslint-disable-next-line
     const handleRating = (id) => {
         console.log(id);
     };
@@ -41,6 +57,9 @@ const Dashboard = () => {
         { id: 2, icon: edu, onClick: handleEducation },
         { id: 3, icon: bag, onClick: handleExperience },
     ];
+    if (loading) {
+        return <h1>Loading...</h1>;
+    }
     return (
         <>
             <Navbar>
@@ -57,27 +76,37 @@ const Dashboard = () => {
                     </div> */}
                     <div className='top-row'>
                         <div className='profile-area'>
-                            <div className='avatar'>
-                                <img src={avatar} alt='avatar' />
-                                <div className='active'></div>
-                            </div>
-                            <div className='text'>
-                                <h2>Welcom,</h2>
-                                <h3>Sarah Smith</h3>
-                                <div className='rating'>
-                                    {Array.from({ length: 4 }).map((_, i) => (
-                                        <FontAwesomeIcon
-                                            icon={faStar}
-                                            key={i}
-                                            color='gold'
-                                        />
-                                    ))}
+                            <div className='constant-info'>
+                                <div className='avatar'>
+                                    <Link to='/profile'>
+                                        <img src={avatar} alt='avatar' />
+                                        <div className='active'></div>
+                                    </Link>
+                                </div>
+                                <div className='text'>
+                                    <h2>Welcom,</h2>
+                                    <h3>{name}</h3>
+                                    <div className='rating'>
+                                        {Array.from({ length: 5 }).map(
+                                            (_, i) => (
+                                                <FontAwesomeIcon
+                                                    icon={faStar}
+                                                    key={i}
+                                                    color='gold'
+                                                />
+                                            )
+                                        )}
+                                    </div>
                                 </div>
                             </div>
+                            {/* <p>{profile.bio || null} </p> */}
                         </div>
-                        <div className='status'>
-                            <p>Frontend Developer</p>
-                        </div>
+
+                        {/* {userStatus && (
+                            <div className='status'>
+                                <p>{userStatus}</p>
+                            </div>
+                        )} */}
                     </div>
 
                     <div className='action-group'>
@@ -98,25 +127,30 @@ const Dashboard = () => {
                         })}
                     </div>
 
-                    <div className='banner'>
-                        <div className='banner-body'>
-                            <div className='icon'>
-                                <span></span>
-                                <FontAwesomeIcon icon={faTimes} />
+                    {!exists && (
+                        <div className='banner'>
+                            <div className='banner-body'>
+                                <div className='icon'>
+                                    <span></span>
+                                    <FontAwesomeIcon icon={faTimes} />
+                                </div>
+                                <h4>
+                                    Now that you have created your account let's
+                                    add some info about you so people can know
+                                    you better
+                                </h4>
+                                <button
+                                    className='btn'
+                                    onClick={() =>
+                                        naviagete('/create-profile')
+                                    }>
+                                    Let's Beggin
+                                </button>
                             </div>
-                            <h4>
-                                Now that you have created your account let's add
-                                some info about you so people can know you
-                                better
-                            </h4>
-                            <button
-                                className='btn'
-                                onClick={() => naviagete('/create-profile')}>
-                                Let's Beggin
-                            </button>
                         </div>
-                    </div>
+                    )}
                 </div>
+                <FooterLine />
             </div>
         </>
     );

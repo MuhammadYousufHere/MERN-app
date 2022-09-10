@@ -13,6 +13,8 @@ const TextArea = ({
     name,
     value,
     color,
+    max = 100,
+    width,
 }) => {
     return (
         <>
@@ -22,6 +24,8 @@ const TextArea = ({
                 className='textarea'
                 name={name}
                 value={value}
+                maxLength={max}
+                style={{ width }}
             />
             {(error || tip) && (
                 <div className='error-sec'>

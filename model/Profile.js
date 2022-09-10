@@ -6,7 +6,7 @@ const ProfileSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'users',
     },
-    companay: {
+    company: {
         type: String,
     },
     website: {

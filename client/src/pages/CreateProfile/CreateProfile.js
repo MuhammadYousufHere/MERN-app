@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
 import {
     faBuilding,
     faGlobe,
@@ -18,6 +20,9 @@ import Dropdown from '../../components/Form/Input/Dropdown';
 import Submit from '../../components/Form/Input/Submit';
 import Navbar from '../../components/Navbar/Navbar';
 import FooterLine from '../../components/FooterLine';
+import { createUserProfile } from '../../features/profileSlice';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 const data = [
     { id: 1, value: 'MERN Stack Developer' },
     { id: 2, value: 'MEAN Stack Developer' },
@@ -30,7 +35,10 @@ const data = [
     { id: 10, value: 'iOs Developer' },
     { id: 11, value: 'DevOps' },
 ];
+
 const CreateProfile = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         company: '',
         website: '',
@@ -67,21 +75,26 @@ const CreateProfile = () => {
     };
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(formData);
-        setFormData({
-            company: '',
-            website: '',
-            status: '',
-            bio: '',
-            skills: '',
-            githubusername: '',
-            location: '',
-            youtube: '',
-            facebook: '',
-            twitter: '',
-            linkedin: '',
-            instagram: '',
-        });
+        if (!status && !skills) {
+            toast.error('Skills and Status are reqired field.');
+        } else {
+            dispatch(createUserProfile(formData));
+            setFormData({
+                company: '',
+                website: '',
+                status: '',
+                bio: '',
+                skills: '',
+                githubusername: '',
+                location: '',
+                youtube: '',
+                facebook: '',
+                twitter: '',
+                linkedin: '',
+                instagram: '',
+            });
+            navigate('/profile');
+        }
     };
 
     return (
@@ -98,7 +111,7 @@ const CreateProfile = () => {
                         <form onSubmit={handleSubmit}>
                             <Dropdown
                                 icon={faBuilding}
-                                tip='Your own company or where you work'
+                                tip='Select your current status i.e (Frontend, backend etc)'
                                 value={status}
                                 color='grey'
                                 data={data}
@@ -111,7 +124,7 @@ const CreateProfile = () => {
                                 placeholder='Company...'
                                 name='company'
                                 icon={faBuilding}
-                                tip='Your own company or where you work'
+                                tip='Your own company or where you work currently'
                                 value={company}
                                 color='grey'
                                 onChange={handleChange}

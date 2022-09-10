@@ -79,7 +79,12 @@ router.post(
                 (error, token) => {
                     if (error) throw error;
                     // can also send somerhing else like user id
-                    res.json({ token });
+                    res.json({
+                        token,
+                        name: user.name,
+                        avatar: user.avatar,
+                        email: user.email,
+                    });
                 }
             );
             // res.send('User Registered!');

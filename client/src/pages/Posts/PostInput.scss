@@ -1,0 +1,90 @@
+.post-input-container {
+    padding: 1rem 0.6rem 2rem 0.6rem;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    border-radius: 2vmin;
+    .post-input-body {
+        .top,
+        .upper,
+        .close {
+            display: flex;
+            align-items: center;
+        }
+        .top {
+            padding: 0.5rem;
+            border-bottom: 1px solid gray;
+            justify-content: space-between;
+            h4 {
+                font-size: 1.1rem;
+            }
+            .close {
+                padding: 0.5rem;
+                border-radius: 100%;
+                width: 30px;
+                height: 30px;
+                justify-content: center;
+                animation: all;
+                &:hover {
+                    background-color: #ffff;
+                    -webkit-animation: spin 0.3s ease-in;
+                    -moz-animation: spin 0.3s ease-in;
+                    animation: spin 0.3s ease-in;
+                }
+            }
+        }
+        .middle {
+            padding: 1rem 0;
+            .upper {
+                gap: 0.5rem;
+                .info {
+                    p {
+                        font-size: 0.8rem;
+                        svg {
+                            margin-left: 5px;
+                        }
+                    }
+                }
+                .avatar {
+                    width: 60px;
+                    height: 60px;
+                    border-radius: 100%;
+                    overflow: hidden;
+                    img {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+            }
+            .lower {
+                margin: 1rem 0;
+                .actions {
+                    padding: 0.3rem 2rem;
+                }
+            }
+        }
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(180deg);
+    }
+    to {
+        transform: rotate(180deg);
+    }
+}
+@-moz-keyframes spin {
+    100% {
+        -moz-transform: rotate(360deg);
+    }
+}
+@-webkit-keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+@keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}

@@ -1,4 +1,242 @@
+$softDark: #29232e;
+$secondary-text: #656768;
+$soft-darki: #333333;
+$soft-darkii: #29232e;
+$soft-darkiii: #595959;
+$soft-darkiv: #212529;
+$soft-darkv: #34495e;
+$soft-darkvi: #3f3844;
 .profile-container {
+    padding-top: 12%;
     .profile-body {
+        padding: 1rem 0.8rem;
+        .top-row {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            // justify-content: center;
+            .profile-area {
+                margin: 1rem 0.2rem 0 0.2rem;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                border-radius: 15vmin 2vmin;
+                padding: 0.8rem 0.5rem;
+                background: url('../../assets/bg5.jpg');
+                // background: url('../../assets/profile-bg-1.png');
+                background-size: 70%;
+                box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+                flex-direction: column;
+                .constant-info {
+                    display: flex;
+                    gap: 0.6rem;
+                    align-items: center;
+                    .avatar {
+                        background-color: aquamarine;
+                        width: 140px;
+                        height: 140px;
+                        border-radius: 100%;
+                        // overflow: hidden;
+                        border: 5px solid #fff;
+
+                        .active {
+                            width: 16px;
+                            height: 16px;
+                            border: 3px solid #fff;
+                            background: green;
+                            // position: absolute;
+                            border-radius: 100%;
+                            transform: translate(21px, -19px);
+                        }
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            border-radius: 100%;
+                        }
+                    }
+                    .text {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-start;
+                    }
+                }
+                h2 {
+                    font-family: BoronB;
+                    font-family: LimeDays;
+                    font-size: 2rem;
+                    color: #302357;
+
+                    letter-spacing: 4px;
+                }
+                h3 {
+                    font-family: Segoe;
+                    font-size: 1.35rem;
+                    color: $softDark;
+                }
+                .rating {
+                    margin-top: 0.2rem;
+                }
+            }
+            .status {
+                text-align: center;
+                background: #b1b6b9;
+                width: 65%;
+                border-radius: 12vmin 1.5vmin;
+                padding: 0.5rem 1rem;
+                box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+                transform: translateY(-0.5rem);
+                p {
+                    font-family: UbuntoIt;
+                    color: #55595c;
+                }
+            }
+            .professional-info {
+                display: flex;
+                gap: 1rem;
+                width: 100%;
+                // justify-content: space-between;
+                flex-direction: column;
+                padding: 0.6rem;
+                .bio {
+                    text-align: center;
+                    p {
+                        color: $soft-darkv;
+                        font-weight: 500;
+                    }
+                }
+                .with-icon-info {
+                    display: flex;
+                    gap: 1rem;
+                    width: 100%;
+                    justify-content: space-between;
+                    .company,
+                    .website,
+                    .address {
+                        display: flex;
+                        align-items: baseline;
+                        justify-content: center;
+                        gap: 0.2rem;
+                        // max-width: 40.33%;
+                        p,
+                        svg,
+                        a {
+                            font-size: 15px;
+                            color: #55595c;
+                        }
+                        p,
+                        a {
+                            transform: translateY(-1px);
+                        }
+                        a {
+                            text-decoration: none;
+                        }
+                    }
+                    .website {
+                        // width: 33.33%;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                        white-space: nowrap;
+                    }
+                }
+            }
+        }
+        .social-links {
+            padding: 0.5rem 0.3rem;
+            .link {
+                padding: 0.1rem 0;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                p {
+                    font-size: 1.1rem;
+                }
+                .icon {
+                    width: 30px;
+                    svg {
+                        font-size: 1.5rem;
+                        margin: 0.4rem 0;
+                    }
+                }
+            }
+        }
+        .experience-container {
+            width: 100%;
+            height: 100%;
+            margin-top: 0.6rem;
+            .work-experience {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                padding: 1rem;
+                // align-items: center;
+                // justify-content: ;
+                gap: 2rem;
+                .item-bar {
+                    background-color: #b9b6c3;
+                    width: 3px;
+                    // height: 100vmax;
+                    display: flex;
+                    position: relative;
+                    border-radius: 100vmin;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    align-items: center;
+                    .circle {
+                        width: 15px !important;
+                        // position: absolute;
+                        top: 0;
+                        height: 15px !important;
+                        overflow: auto;
+                        border-radius: 100%;
+                        background: rgb(252, 252, 252);
+                        box-shadow: rgb(0 0 0 / 40%) 0px 4px 12px 0.2px;
+                        margin-top: 1.5rem;
+                    }
+
+                    .circle:nth-of-type(1) {
+                        margin-top: 0 !important;
+                        background: #302357;
+                        width: 20px !important;
+                        height: 20px !important;
+                    }
+                }
+                .experience-box {
+                    .item {
+                        margin-bottom: 1.5rem;
+                        h4:first-of-type {
+                            font-size: 1.1rem;
+                            color: #656768;
+                        }
+                        h3 {
+                            font-size: 1.2rem;
+                            color: $soft-darkv;
+                        }
+                        h4:last-of-type {
+                            font-size: 0.9rem;
+                            color: #55595c;
+                        }
+                    }
+                    .item:last-of-type {
+                        margin-bottom: 0 !important;
+                    }
+                }
+            }
+        }
+        .skills-container {
+            .skills {
+                display: flex;
+                gap: 0.7rem;
+                flex-wrap: wrap;
+                padding: 1rem 0.6rem;
+                .skill {
+                    background: #efebeb;
+                    padding: 0.6rem 1.2rem;
+                    border-radius: 10vmin 0.5vmin;
+                    font-size: 0.9rem;
+                    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px,
+                        rgba(0, 0, 0, 0.23) 0px 3px 6px;
+                }
+            }
+        }
     }
 }

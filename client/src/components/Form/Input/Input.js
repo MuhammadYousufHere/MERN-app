@@ -8,11 +8,12 @@ import React from 'react';
 import './Input.scss';
 const Input = ({
     icon,
-    type,
+    type = 'text',
     placeholder,
     name,
     onChange,
     onShow,
+    onFocus,
     value,
     id,
     error,
@@ -32,6 +33,7 @@ const Input = ({
                     value={value}
                     id={id}
                     onChange={onChange}
+                    onFocus={onFocus}
                 />
                 {icon && (
                     <FontAwesomeIcon

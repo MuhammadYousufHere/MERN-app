@@ -77,7 +77,7 @@ const Signup = () => {
                 <section className='form-area'>
                     <div className='text'>
                         <h1>Sign Up</h1>
-                        <p>Create your accout</p>
+                        <p>Create your account now</p>
                     </div>
                     <form onSubmit={handleSubmit}>
                         <Input
