@@ -14,29 +14,35 @@ import Profile from './pages/Profile/Profile';
 import NotFound from './pages/NotFound/NotFound';
 import Posts from './pages/Posts/Posts';
 import authHeader from './features/util';
+import AddExperience from './pages/CreateProfile/AddExperience';
+import AddEducation from './pages/CreateProfile/AddEducation';
+import Developers from './pages/Developers/Developers';
 const App = () => {
-    return (
-        <React.Fragment>
-            <Routes>
-                <Route path='/' element={<Home />} />
-                <Route path='/register-page' element={<Register />} />
-                <Route path='/signin' element={<SignIn />} />
-                <Route path='/signup' element={<Signup />} />
+  return (
+    <React.Fragment>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/register-page' element={<Register />} />
+        <Route path='/signin' element={<SignIn />} />
+        <Route path='/signup' element={<Signup />} />
+        <Route path='/developers' element={<Developers />} />
 
-                <Route element={<PrivateRoute />}>
-                    <Route path='/dashboard' element={<Dashboard />} />
-                    <Route path='/posts' element={<Posts />} />
-                    <Route path='/create-profile' element={<CreateProfile />} />
-                    <Route path='/profile' element={<Profile />} />
-                </Route>
-                {/* Catch all - replace with 404 component if you want */}
-                <Route path='*' element={<Navigate to='/404' replace />} />
-                <Route path='/404' element={<NotFound />} />
-            </Routes>
+        <Route element={<PrivateRoute />}>
+          <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/posts' element={<Posts />} />
+          <Route path='/add-education' element={<AddEducation />} />
+          <Route path='/add-experience' element={<AddExperience />} />
+          <Route path='/create-profile' element={<CreateProfile />} />
+          <Route path='/profile' element={<Profile />} />
+        </Route>
+        {/* Catch all - replace with 404 component if you want */}
+        <Route path='*' element={<Navigate to='/404' replace />} />
+        <Route path='/404' element={<NotFound />} />
+      </Routes>
 
-            <ToastContainer />
-        </React.Fragment>
-    );
+      <ToastContainer />
+    </React.Fragment>
+  );
 };
 
 export default App;

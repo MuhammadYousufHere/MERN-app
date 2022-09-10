@@ -1,0 +1,25 @@
+.link-button {
+    color: #ffffff;
+    font-size: 17px;
+    line-height: 24px;
+    letter-spacing: 0.01em;
+    list-style-type: none;
+    text-decoration: none;
+    margin: 0;
+    border: 2px solid #24293d;
+    border-radius: 10vmin 1vmin;
+    height: 60px;
+    width: 250px;
+    font-family: Archivo-SBold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: hsl(228deg 25% 19%);
+    box-shadow: rgb(0 0 0 / 40%) 0px 4px 12px 0.2px;
+    &:hover {
+        background-color: hsl(228deg 25% 19%);
+        color: white;
+    }
+
+    // margin-bottom: 20px;
+}

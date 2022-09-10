@@ -7,42 +7,42 @@ import { faCommentDots, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
 
-const Actions = () => {
-    const [like, setLike] = useState(false);
-    const handleComment = () => {
-        console.log('comment');
-    };
-    return (
-        <div className='actions-container'>
-            <div className='action-body'>
-                <div className='actions'>
-                    <div className='likes'>
-                        <FontAwesomeIcon
-                            icon={faHeart}
-                            onClick={() => setLike(!like)}
-                            color={like ? '#cc0000' : ''}
-                        />
-                        <p>43</p>
-                    </div>
-                    <div className='comments'>
-                        <FontAwesomeIcon
-                            icon={faCommentDots}
-                            onClick={handleComment}
-                        />
-                        <p>22</p>
-                    </div>
-                </div>
-                <div className='peoples'>
-                    <img className='img' src={man} alt='user' />
-                    <img className='img' src={man2} alt='user' />
-                    <img className='img' src={girl} alt='user' />
-                    <div className='img users-stack'>
-                        <span>+3</span>
-                    </div>
-                </div>
-            </div>
+const Actions = ({ likes = 4, comments = 3 }) => {
+  const [like, setLike] = useState(false);
+  const handleComment = () => {
+    console.log('comment');
+  };
+  return (
+    <div className='actions-container'>
+      <div className='action-body'>
+        <div className='actions'>
+          <div className='likes'>
+            <FontAwesomeIcon
+              icon={faHeart}
+              onClick={() => setLike(!like)}
+              color={like ? '#cc0000' : ''}
+            />
+            <p>{likes}</p>
+          </div>
+          <div className='comments'>
+            <FontAwesomeIcon
+              icon={faCommentDots}
+              onClick={handleComment}
+            />
+            <p>{comments}</p>
+          </div>
         </div>
-    );
+        <div className='peoples'>
+          <img className='img' src={man} alt='user' />
+          <img className='img' src={man2} alt='user' />
+          <img className='img' src={girl} alt='user' />
+          <div className='img users-stack'>
+            <span>+3</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Actions;

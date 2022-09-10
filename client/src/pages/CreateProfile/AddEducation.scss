@@ -1,0 +1,13 @@
+.add-education-container {
+    margin: 16% 0 0 0;
+    padding: 1rem;
+    .add-education-body {
+        .checkbox {
+            margin: 0.5rem 0;
+            display: flex;
+            gap: 1rem;
+            font-size: 17px;
+            color: gray;
+        }
+    }
+}

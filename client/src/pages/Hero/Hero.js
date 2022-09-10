@@ -1,7 +1,7 @@
 import React from 'react';
 import './Hero.scss';
 import avatar from '../../assets/avatar1.webp';
-import { Link } from 'react-router-dom';
+import LinkButton from '../../components/Button/LinkButton';
 
 const Hero = () => {
     return (
@@ -19,11 +19,7 @@ const Hero = () => {
                         </p>
                         {/* <p>Connecto is the easiest way to find and engage with top professionals around the world</p> */}
                     </div>
-                    {/* <div className='button'>/ */}
-                    <Link className='button' to='/signup'>
-                        Sign Up
-                    </Link>
-                    {/* </div> */}
+                    <LinkButton to='/signup' title='Sign Up' />
                 </div>
             </div>
             <svg
