@@ -1,19 +1,68 @@
 import React, { useState, useEffect } from 'react'
-import './Developers.js'
-
+import './Developers.scss'
+import Button from '../../components/Button/Button'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import Navbar from '../../components/Navbar/Navbar'
+import Input from '../../components/Form/Input/Input'
 import { useSelector, useDispatch } from 'react-redux'
 import { getAllUsers, getUserByID } from '../../features/profileSlice.js'
+import Card from '../../components/Card/Card.js'
+import DevItem from './DevItem'
 const Developers = () => {
-  const user = "6315a2eec9dee51f2bad28c1"
+  const { profiles, loading, success } = useSelector((state) => state.profile)
+  // 
+  const [renderDev, setRenderDev] = useState([])
+  const [compLoading, setCompLoading] = useState(true)
+  const [searchDev, setSearchDev] = useState({
+    developer: ''
+  })
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(getAllUsers())
-    // dispatch()
 
   }, [dispatch])
-
+  useEffect(() => {
+    setCompLoading(false)
+  }, [loading, profiles])
+  useEffect(() => {
+    if (!loading) {
+      setRenderDev(profiles)
+    }
+  }, [loading, profiles])
+  const handleChange = (e) => {
+    setSearchDev((prevState) => {
+      return { ...prevState, [e.target.name]: e.target.value }
+    })
+  }
+  // 
+  if (compLoading && loading) {
+    return <h2>loading...</h2>
+  }
   return (
-    <div>Developers</div>
+    <>
+      <Navbar />
+      <div className="developers-container">
+        <div className="developers-body">
+          <Card>
+            <div className="search-box">
+              <Input placeholder='Search a developer...'
+                icon={faSearch} value={searchDev.developer}
+                onChange={handleChange}
+                name='developer'
+              />
+              <div className="quick-actions">
+                <Button title='All' active={true} />
+                <Button title='Top Rated' />
+                <Button title='Active' />
+              </div>
+            </div>
+          </Card>
+          <div className="developers-profiles">
+            {success ? (renderDev.map(profile => <DevItem name={profile.user.name} status={profile.status} key={profile._id} location={profile.location} />)) : <h4>Loading...</h4>}
+          </div>
+        </div>
+      </div>
+    </>
   )
 }
 

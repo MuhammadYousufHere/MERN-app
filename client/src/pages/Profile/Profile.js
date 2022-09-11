@@ -24,52 +24,49 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import CreatePost from '../Posts/CreatePost';
 import PostInput from '../Posts/PostInput';
 import { Modal } from '../../components/Modal/Modal';
+import Social from './Social';
 
-const socialsIcons = [
-  { id: 1, icon: faLinkedin, title: 'linkedIn', link: 'saraalikhan' },
-  { id: 2, icon: faFacebook, title: 'Faceebook', link: 'sarali123' },
-  { id: 3, icon: faTwitter, title: 'Twitter', link: 'sarakhan221' },
-  { id: 4, icon: faInstagram, title: 'Instagram', link: 'sarahere123' },
-  { id: 5, icon: faYoutube, title: 'Youtube', link: '12sarakhan' },
-];
+
 const Profile = () => {
   const dispatch = useDispatch();
   const ref = useRef();
   //
-
+  const [userAvatar, setUserAvatar] = useState('')
   const [barHeight, setBarHeight] = useState(100);
   const [userSkills, setUserSkills] = useState([]);
+  const [userSocial, setUserSocial] = useState({});
   const [userExperience, setUserExperience] = useState([]);
   const [userEducation, setUserEducation] = useState([]);
-  const [userName, setUserName] = useState('Sara Ali Khan');
-  const [userWebsite, setUserWebsite] = useState('www.ibex.com');
-  const [userAddr, setUserAddr] = useState('Karachi,Pk');
-  const [userBio, setUserBio] = useState(
-    'I am MERN Stack developer and Maths Teacher based in Karachi,PK.'
-  );
-
+  const [userName, setUserName] = useState('');
+  const [userWebsite, setUserWebsite] = useState('');
+  const [userAddr, setUserAddr] = useState('');
+  const [userBio, setUserBio] = useState('');
   const [show, setShow] = useState(false);
+  const [userCompany, setUserCompany] = useState('');
+  const [userStatus, setUserStatus] = useState('');
 
-  const [userCompany, setUserCompany] = useState('Ibex');
-  const [userStatus, setUserStatus] = useState('MERN Stack Developer');
+  // 
+
   const { profile, exists, loading } = useSelector((state) => state.profile);
 
+  // get user info
   useEffect(() => {
     dispatch(getCurrentUser());
   }, [dispatch]);
+
+  // 
   useLayoutEffect(() => {
     if (ref.current && ref.current.clientHeight) {
       const height = ref.current.clientHeight;
       setBarHeight(height);
     }
   }, [loading]);
-  console.log(profile)
 
   const closeModalHandler = () => setShow(false);
   useEffect(() => {
     if (exists && !loading) {
       const {
-        user: { name },
+        user: { name, avatar },
         website,
         location,
         status,
@@ -77,9 +74,10 @@ const Profile = () => {
         skills,
         bio,
         experience,
-        education
+        education,
+        social
       } = profile;
-
+      setUserAvatar(avatar)
       setUserName(name);
       setUserCompany(company);
       setUserWebsite(website);
@@ -89,6 +87,7 @@ const Profile = () => {
       setUserSkills(skills);
       setUserExperience(experience)
       setUserEducation(education)
+      setUserSocial(social)
     }
   }, [profile, exists, loading]);
   // const handleDeleteEdu = () => {
@@ -113,7 +112,7 @@ const Profile = () => {
                     <div className='avatar'>
                       <Link to='/profile'>
                         <img
-                          src={avatar}
+                          src={userAvatar}
                           alt='avatar'
                         />
                         <div className='active'></div>
@@ -180,117 +179,120 @@ const Profile = () => {
                 </Modal>
               </div>
 
-              <div className='experience-container'>
-                <h2>Work Experience</h2>
-                <div className='work-experience'>
-                  <div
-                    className='item-bar'
-                    style={{ height: `${barHeight}px` }}>
-                    {Array.from({ length: userExperience.length }).map(
-                      (_, i) => {
-                        return (
-                          <div
-                            key={i + 1}
-                            className='circle'></div>
-                        );
-                      }
-                    )}
+              {userExperience.length > 0 && (
+                <div className='experience-container'>
+                  <h2>Work Experience</h2>
+                  <div className='work-experience'>
+                    <div
+                      className='item-bar'
+                      style={{ height: `${barHeight}px` }}>
+                      {Array.from({ length: userExperience.length }).map(
+                        (_, i) => {
+                          return (
+                            <div
+                              key={i + 1}
+                              className='circle'></div>
+                          );
+                        }
+                      )}
 
-                    <div className='circle-empty'></div>
-                  </div>
-                  <div className='experience-box' ref={ref}>
-                    {userExperience.map((exp) => {
-                      return (
-                        <div className='item' key={exp._id}>
-                          <h4>
-                            <Moment format='YYYY/MM'>{exp.from}</Moment> -
-                            <span
-                              style={{
-                                color: exp.to ? 'gray' : 'green',
-                              }}>{' '}
-                              {exp.to ? <Moment format='YYYY/MM'>{exp.to}</Moment> : ' Present'}
-                            </span>
-                          </h4>
-                          <h3>{exp.title}</h3>
-
-                          <h4>{exp.company},{exp.location}</h4>
-                        </div>
-                      )
-                    })}
-                  </div>
-                </div>
-              </div>
-
-
-              <div className='experience-container'>
-                <h2>Education</h2>
-                <div className='work-experience'>
-                  <div
-                    className='item-bar'
-                    style={{ height: `${barHeight}px` }}>
-                    {Array.from({ length: userEducation.length }).map(
-                      (_, i) => {
-                        return (
-                          <div
-                            key={i + 1}
-                            className='circle'></div>
-                        );
-                      }
-                    )}
-
-                    <div className='circle-empty'></div>
-                  </div>
-                  <div className='experience-box' ref={ref}>
-                    {userEducation.map(edu => {
-                      return (
-                        <div className='item' key={edu._id}>
-                          <h4>
-                            <Moment format='YYYY'>{edu.from}</Moment> -
-                            <span style={{ color: edu.to ? 'grey' : 'green' }}>
-                              {' '}{edu.to ? <Moment format='YYYY'>{edu.to}</Moment> : ' Present'}
-                            </span>
-                          </h4>
-
-                          <h3>{edu.degree},{edu.fieldofstudy}</h3>
-                          <h4>
-                            {edu.school}, {edu.location}
-                          </h4>
-                        </div>
-                      )
-                    })}
-
-                  </div>
-                </div>
-              </div>
-
-              <h2>Social</h2>
-              <div className='social-links'>
-                {socialsIcons.map((item) => {
-                  return (
-                    <div className='link' key={item.id}>
-                      <div className='icon'>
-                        <FontAwesomeIcon
-                          icon={item.icon}
-                          color=''
-                        />
-                      </div>
-                      <p>{item.link}</p>
+                      <div className='circle-empty'></div>
                     </div>
-                  );
-                })}
-              </div>
-              <div className='skills-container'>
-                <h2>Skills</h2>
-                <div className='skills'>
-                  {userSkills.map((skill, i) => {
-                    return (
-                      <div key={i} className='skill'>
-                        <p>{skill}</p>
-                      </div>
-                    );
-                  })}
+                    <div className='experience-box' ref={ref}>
+                      {userExperience.map((exp) => {
+                        return (
+                          <div className='item' key={exp._id}>
+                            <h4>
+                              <Moment format='YYYY/MM'>{exp.from}</Moment> -
+                              <span
+                                style={{
+                                  color: exp.to ? 'gray' : 'green',
+                                }}>{' '}
+                                {exp.to ? <Moment format='YYYY/MM'>{exp.to}</Moment> : ' Present'}
+                              </span>
+                            </h4>
+                            <h3>{exp.title}</h3>
+
+                            <h4>{exp.company},{exp.location}</h4>
+                          </div>
+                        )
+                      })}
+                    </div>
+                  </div>
                 </div>
-              </div>
+              )}
+
+
+              {userEducation.length > 0 && (
+                <div className='experience-container'>
+                  <h2>Education</h2>
+                  <div className='work-experience'>
+                    <div
+                      className='item-bar'
+                      style={{ height: `${barHeight}px` }}>
+                      {Array.from({ length: userEducation.length }).map(
+                        (_, i) => {
+                          return (
+                            <div
+                              key={i + 1}
+                              className='circle'></div>
+                          );
+                        }
+                      )}
+
+                      <div className='circle-empty'></div>
+                    </div>
+                    <div className='experience-box' ref={ref}>
+                      {userEducation.map(edu => {
+                        return (
+                          <div className='item' key={edu._id}>
+                            <h4>
+                              <Moment format='YYYY'>{edu.from}</Moment> -
+                              <span style={{ color: edu.to ? 'grey' : 'green' }}>
+                                {' '}{edu.to ? <Moment format='YYYY'>{edu.to}</Moment> : ' Present'}
+                              </span>
+                            </h4>
+
+                            <h3>{edu.degree},{edu.fieldofstudy}</h3>
+                            <h4>
+                              {edu.school}, {edu.location}
+                            </h4>
+                          </div>
+                        )
+                      })}
+
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {(userSocial !== null) && (
+                <div className='user-social'>
+                  <h2>Social</h2>
+                  {userSocial.facebook && <Social icon={faFacebook} to={Object.values(userSocial.facebook)} />}
+                  {userSocial.linkedin && <Social icon={faLinkedin} to={Object.values(userSocial.linkedin)} />}
+                  {userSocial.twitter && <Social icon={faTwitter} to={Object.values(userSocial.twitter)} />}
+                  {userSocial.instagram && <Social icon={faInstagram} to={Object.values(userSocial.instagram)} />}
+                  {userSocial.youtube && <Social icon={faYoutube} to={Object.values(userSocial.youtube)} />}
+
+                </div>
+              )}
+
+              {userSkills.length > 0 && (
+                <div className='skills-container'>
+
+                  <h2>Skills</h2>
+                  <div className='skills'>
+                    {userSkills.map((skill, i) => {
+                      return (
+                        <div key={i} className='skill'>
+                          <p>{skill}</p>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
               <CreatePost
                 // avatar={avatar}
                 avatar={profile.user.avatar}

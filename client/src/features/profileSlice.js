@@ -10,6 +10,7 @@ const initialState = {
   repo: null,
   loading: true,
   error: {},
+  success: false
 };
 // 
 // admin ~ delete a user
@@ -68,6 +69,7 @@ const profileSlice = createSlice({
         state.loading = false;
         state.profile = action.payload;
         state.exists = action.payload.skills ? true : false;
+        state.success = true
       })
       .addCase(getCurrentUser.rejected, (state, action) => {
         state.loading = false;
@@ -77,15 +79,17 @@ const profileSlice = createSlice({
       })
       .addCase(getAllUsers.pending, (state) => {
         state.loading = true;
+
       })
       .addCase(getAllUsers.fulfilled, (state, action) => {
         state.loading = false;
         state.profiles = action.payload;
+        state.success = true
       })
       .addCase(getAllUsers.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
-        state.profiles = [];
+
       })
       .addCase(createUserProfile.pending, (state, action) => {
         state.loading = true;

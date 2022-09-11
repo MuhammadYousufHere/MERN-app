@@ -7,7 +7,7 @@ const API_URL = 'http://localhost:8080/api/profile';
 const getAllProfiles = async () => {
   try {
     const res = await axios.get(API_URL, { headers: authHeader() });
-    console.log(res.data)
+    return res.data
 
   } catch (error) {
     const msg = error.response.data;
