@@ -1,11 +1,25 @@
 .comment-container {
-    font-family: Archivo !important;
+    font-family: Archivo-Med !important;
+    display: flex;
+    justify-content: flex-end;
+    margin: 0.5rem 0;
     .comment-body {
         padding: 0 2rem;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px,
+            rgba(0, 0, 0, 0.23) 0px 3px 6px;
+        background-color: #e4e6eb;
+        background-color: #f0f2f5;
+
+        border-radius: 10vmin 1vmin;
+        padding: 0.8rem 1rem;
+        width: 90%;
         .author-info {
             display: flex;
             align-items: center;
             justify-content: space-between;
+            h5 {
+                color: #121212;
+            }
             .left,
             .right {
                 display: flex;
@@ -20,11 +34,59 @@
             }
             .right {
                 align-self: flex-start;
+                .options-bar {
+                    color: rgb(160, 160, 160);
+                    margin-top: 0.2rem;
+                    position: relative;
+                    svg {
+                        font-size: 1.4rem;
+                    }
+                    .options {
+                        position: absolute;
+                        // width: 400px;
+                        z-index: 1;
+                        height: max-content;
+                        display: flex;
+                        flex-direction: column;
+                        top: 1.5rem;
+                        right: 0;
+                        padding: 1rem 0.4rem 0.4rem 0.4rem;
+                        width: 130px;
+                        background: #fff;
+                        box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px,
+                            rgba(0, 0, 0, 0.23) 0px 3px 6px;
+                        border-radius: 5vmin 1vmin;
+                        .item {
+                            display: flex;
+                            gap: 5px;
+                            align-items: flex-start;
+                            padding: 0.3rem;
+                            p,
+                            svg {
+                                font-size: 1rem !important;
+                            }
+                            .icon {
+                                width: 20px;
+                            }
+                        }
+                    }
+                }
+            }
+            .info {
+                color: #757575;
+                p {
+                    font-size: 13px;
+                    line-height: 0.9;
+                }
+                .timeago {
+                    font-size: 12px;
+                }
             }
             .avatar {
-                width: 50px;
-                height: 50px;
+                width: 55px;
+                height: 55px;
                 border-radius: 100%;
+                overflow: hidden;
                 img {
                     width: 100%;
                     height: 100%;
@@ -32,7 +94,7 @@
             }
         }
         .post-text {
-            padding: 0 0rem 0.5rem 3.8rem;
+            padding: 0.5rem 0.3rem 0rem 0.3rem;
         }
     }
 }

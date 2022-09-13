@@ -56,6 +56,12 @@ export const deleteUserEducation = createAsyncThunk(API_URL, async (eduID) => {
   return await profileService.deleteUserEducation(eduID);
 });
 
+// get user github repos
+
+export const getUserGithubRepos = createAsyncThunk(API_URL + '/github', async (githubUsername) => {
+  return await profileService.getUserGithubRepos(githubUsername)
+})
+
 const profileSlice = createSlice({
   name: 'profile',
   initialState,
@@ -104,7 +110,15 @@ const profileSlice = createSlice({
         state.error = action.payload;
         state.profile = null;
         state.exists = false;
-      });
+      }).addCase(getUserGithubRepos.pending, (state) => {
+        state.loading = true
+      }).addCase(getUserGithubRepos.fulfilled, (state, action) => {
+        state.loading = false;
+        state.repo = action.payload;
+      })
+      .addCase(getUserGithubRepos.rejected, (state, action) => {
+        state.repo = null;
+      })
   },
 });
 export const profileReducer = profileSlice.reducer;

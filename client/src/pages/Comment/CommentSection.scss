@@ -1,0 +1,24 @@
+.comment-on-post-container {
+    margin: 11% 0 25% 0;
+    .comment-on-post-body {
+        padding: 1rem;
+    }
+}
+.comment-fixed-input {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #ffffff;
+    padding: 0.6rem 0.8rem 0 0.8rem;
+    border-radius: 12vmin 0 0 0;
+    .comment-form-container {
+        .comment-form-body {
+            form {
+                width: 100% !important;
+                input {
+                    width: 100% !important;
+                }
+            }
+        }
+    }
+}

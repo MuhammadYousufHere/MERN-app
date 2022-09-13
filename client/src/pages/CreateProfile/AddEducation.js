@@ -123,7 +123,7 @@ const AddEducation = () => {
             />
 
             <div className="checkbox">
-              <label htmlFor='current' id='current'>Currently Working</label>
+              <label htmlFor='current' id='current'>Currently Studying ?</label>
               <input
                 id='current'
                 type='checkbox'

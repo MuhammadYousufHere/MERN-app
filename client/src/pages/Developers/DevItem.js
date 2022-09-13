@@ -3,12 +3,12 @@ import Button from '../../components/Button/Button'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './DevItem.scss'
 import { faLocationDot, } from '@fortawesome/free-solid-svg-icons'
-const DevItem = ({ name = 'Sara Shah', location = 'London, UK' }) => {
+const DevItem = ({ name = 'Sara Shah', location = 'London, UK', avatar }) => {
   return (
     <div className='dev-item'>
       <div className="info-box">
         <div className="avatar">
-          <img src={require('../../assets/avatar-girl.png')} alt="" />
+          <img src={avatar} alt="" />
         </div>
         <div className="intro">
           <h4>{name}</h4>

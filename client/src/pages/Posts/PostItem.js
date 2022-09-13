@@ -9,6 +9,7 @@ import {
   faPen,
   faTrash,
 } from '@fortawesome/free-solid-svg-icons';
+import TimeAgo from './TimeAgo';
 
 const PostItem = ({
   name = 'Fiza Khan',
@@ -17,7 +18,12 @@ const PostItem = ({
   postText = 'Lorem ipsum, dolor sit amet.',
   time,
   comments,
-  likes
+  likes,
+  onDelete,
+  onEdit,
+  onComment,
+  onLike,
+  children
 }) => {
   const [showOpt, setShowOpt] = useState(false);
   return (
@@ -32,7 +38,7 @@ const PostItem = ({
               <h4>{name}</h4>
               <p>@{userName}</p>
               <p>
-                2 min ago
+                <TimeAgo timestamp={time} />
                 <FontAwesomeIcon icon={faGlobe} />
               </p>
             </div>
@@ -45,13 +51,13 @@ const PostItem = ({
             <div
               className='options'
               style={{ display: `${showOpt ? 'flex' : 'none'}` }}>
-              <div className='item'>
+              <div className='item' onClick={onDelete}>
                 <div className='icon'>
                   <FontAwesomeIcon icon={faTrash} />
                 </div>
                 <p>Delete post</p>
               </div>
-              <div className='item'>
+              <div className='item' onClick={onEdit}>
                 <div className='icon'>
                   <FontAwesomeIcon icon={faPen} />
                 </div>
@@ -63,7 +69,8 @@ const PostItem = ({
         <div className='post-text'>
           <p>{postText}</p>
         </div>
-        <Actions likes={likes} comments={comments} />
+        <Actions onLike={onLike} likes={likes} onComment={onComment} comments={comments} />
+        {children}
       </div>
     </div>
   );

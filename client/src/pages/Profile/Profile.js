@@ -3,11 +3,12 @@ import Moment from 'react-moment'
 import './Profile.scss';
 import Navbar from '../../components/Navbar/Navbar';
 import { useSelector, useDispatch } from 'react-redux';
-import { getCurrentUser } from '../../features/profileSlice';
-import { Link } from 'react-router-dom';
+import { getCurrentUser, getUserGithubRepos } from '../../features/profileSlice';
+import { Link, useNavigate } from 'react-router-dom';
 import avatar from '../../assets/avatar-girl.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PostItem from '../Posts/PostItem';
+import { util } from '../../util/util';
 import {
   faBriefcase,
   faBuilding,
@@ -25,14 +26,18 @@ import CreatePost from '../Posts/CreatePost';
 import PostInput from '../Posts/PostInput';
 import { Modal } from '../../components/Modal/Modal';
 import Social from './Social';
+import { deletePost, getAllUserPost, likePost } from '../../features/postSlice';
 
 
 const Profile = () => {
   const dispatch = useDispatch();
-  const ref = useRef();
+  const refEdu = useRef();
+  const refExp = useRef();
   //
   const [userAvatar, setUserAvatar] = useState('')
-  const [barHeight, setBarHeight] = useState(100);
+  const [userID, setUserID] = useState('')
+  const [barHeightEdu, setBarHeightEdu] = useState(65);
+  const [barHeightExp, setBarHeightExp] = useState(65);
   const [userSkills, setUserSkills] = useState([]);
   const [userSocial, setUserSocial] = useState({});
   const [userExperience, setUserExperience] = useState([]);
@@ -41,32 +46,44 @@ const Profile = () => {
   const [userWebsite, setUserWebsite] = useState('');
   const [userAddr, setUserAddr] = useState('');
   const [userBio, setUserBio] = useState('');
+  const [userPosts, setUserPosts] = useState([])
   const [show, setShow] = useState(false);
   const [userCompany, setUserCompany] = useState('');
   const [userStatus, setUserStatus] = useState('');
+  const [compLoading, setCompLoading] = useState(true)
 
   // 
 
-  const { profile, exists, loading } = useSelector((state) => state.profile);
-
+  const { profile, exists, loading, success } = useSelector((state) => state.profile);
+  const { posts } = useSelector((state) => state.post);
   // get user info
   useEffect(() => {
     dispatch(getCurrentUser());
+    dispatch(getAllUserPost())
+    dispatch(getUserGithubRepos('muhammadyousufhere'))
   }, [dispatch]);
-
   // 
   useLayoutEffect(() => {
-    if (ref.current && ref.current.clientHeight) {
-      const height = ref.current.clientHeight;
-      setBarHeight(height);
+    if (refEdu.current && refEdu.current.clientHeight) {
+      const height = refEdu.current.clientHeight;
+      setBarHeightEdu(height);
     }
-  }, [loading]);
+
+  }, [loading, profile]);
+  // 
+  useLayoutEffect(() => {
+    if (refExp.current && refExp.current.clientHeight) {
+      const height = refExp.current.clientHeight;
+      setBarHeightExp(height);
+    }
+
+  }, [loading, profile]);
 
   const closeModalHandler = () => setShow(false);
   useEffect(() => {
     if (exists && !loading) {
       const {
-        user: { name, avatar },
+        user: { name, avatar, _id },
         website,
         location,
         status,
@@ -88,15 +105,39 @@ const Profile = () => {
       setUserExperience(experience)
       setUserEducation(education)
       setUserSocial(social)
+      setUserID(_id)
     }
-  }, [profile, exists, loading]);
-  // const handleDeleteEdu = () => {
-  //   // dispatch(deleteUserExperience(id))
-  //   dispatch(deleteUserEducation(id))
-  // }
 
+  }, [profile, exists, loading]);
+
+  useEffect(() => {
+    if (posts) {
+      const userOnly = posts.filter(({ user }) => user === userID).map((post) => post)
+      setUserPosts(userOnly)
+    }
+  }, [posts, profile, userID, success])
+
+  const navigate = useNavigate()
+  const handleEdit = () => { }
+  const handleDelete = (postId) => {
+    dispatch(deletePost(postId))
+  }
+  const handleComment = (post) => {
+    navigate('/comment-section', { state: post })
+  }
+  const handleLike = (postId) => {
+    dispatch(likePost(postId))
+    // dispatch(unlikePost(postId))
+  }
+
+  const handleAutoClose = () => {
+    util.handleAutoClose(setShow)
+  }
+  useEffect(() => {
+    setCompLoading(false)
+  }, [])
   // loader
-  if (loading) {
+  if (compLoading && loading) {
     return <h1>loading...</h1>;
   }
   return (
@@ -175,6 +216,7 @@ const Profile = () => {
                     avatar={avatar}
                     name={userName}
                     onClose={closeModalHandler}
+                    autoClose={handleAutoClose}
                   />
                 </Modal>
               </div>
@@ -185,7 +227,7 @@ const Profile = () => {
                   <div className='work-experience'>
                     <div
                       className='item-bar'
-                      style={{ height: `${barHeight}px` }}>
+                      style={{ height: `${barHeightExp}px` }}>
                       {Array.from({ length: userExperience.length }).map(
                         (_, i) => {
                           return (
@@ -198,7 +240,7 @@ const Profile = () => {
 
                       <div className='circle-empty'></div>
                     </div>
-                    <div className='experience-box' ref={ref}>
+                    <div className='experience-box' ref={refExp}>
                       {userExperience.map((exp) => {
                         return (
                           <div className='item' key={exp._id}>
@@ -229,7 +271,7 @@ const Profile = () => {
                   <div className='work-experience'>
                     <div
                       className='item-bar'
-                      style={{ height: `${barHeight}px` }}>
+                      style={{ height: `${barHeightEdu}px` }}>
                       {Array.from({ length: userEducation.length }).map(
                         (_, i) => {
                           return (
@@ -242,7 +284,7 @@ const Profile = () => {
 
                       <div className='circle-empty'></div>
                     </div>
-                    <div className='experience-box' ref={ref}>
+                    <div className='experience-box' ref={refEdu}>
                       {userEducation.map(edu => {
                         return (
                           <div className='item' key={edu._id}>
@@ -294,18 +336,29 @@ const Profile = () => {
                 </div>
               )}
               <CreatePost
-                // avatar={avatar}
+
                 avatar={profile.user.avatar}
                 onClick={() => setShow(true)}
               />
 
-              <PostItem
-                name={userName}
-                userName={userName.toLowerCase().split(' ')}
-                // userAvatar={avatar}
-                userAvatar={profile.user.avatar}
-                postText='Which Programming language do you love the most?'
-              />
+              {
+                loading ? <h3>Loading ...</h3> : (
+                  userPosts.map((post) => <PostItem
+                    postText={post.text}
+                    name={post.name}
+                    userAvatar={post.avatar}
+                    userName={post.name.toLowerCase().split(' ')}
+                    key={post._id}
+                    time={post.date}
+                    likes={post.likes.length}
+                    comments={post.comments.length}
+                    onComment={() => handleComment(post)}
+                    onLike={() => handleLike(post._id)}
+                    onEdit={() => handleEdit(post._id)}
+                    onDelete={() => handleDelete(post._id)}
+                  />)
+                )
+              }
 
             </>
           ) : (

@@ -324,7 +324,7 @@ router.get('/github/:username', async (req, res) => {
       if (response.statusCode !== 200) {
         return res
           .status(400)
-          .json({ msg: 'No such GitHub user found' });
+          .json({ msg: 'No such Github user found' });
       }
       res.json(JSON.parse(body));
     });

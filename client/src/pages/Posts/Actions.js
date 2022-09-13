@@ -7,27 +7,29 @@ import { faCommentDots, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
 
-const Actions = ({ likes = 4, comments = 3 }) => {
+const Actions = ({ likes = 4, comments = 3, onComment, onLike }) => {
   const [like, setLike] = useState(false);
-  const handleComment = () => {
-    console.log('comment');
-  };
+
+  const toggleLike = () => {
+    onLike()
+    setLike(!like)
+  }
   return (
     <div className='actions-container'>
       <div className='action-body'>
         <div className='actions'>
-          <div className='likes'>
+          <div className='likes' onClick={toggleLike}>
             <FontAwesomeIcon
               icon={faHeart}
-              onClick={() => setLike(!like)}
+
               color={like ? '#cc0000' : ''}
             />
             <p>{likes}</p>
           </div>
-          <div className='comments'>
+          <div className='comments' onClick={onComment}>
             <FontAwesomeIcon
               icon={faCommentDots}
-              onClick={handleComment}
+
             />
             <p>{comments}</p>
           </div>

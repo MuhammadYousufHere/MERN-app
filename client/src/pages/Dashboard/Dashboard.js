@@ -10,7 +10,7 @@ import { useSelector, useDispatch } from 'react-redux';
 // eslint-disable-next-line
 import { getCurrentUser } from '../../features/profileSlice';
 import { reset, logout } from '../../features/authSlice';
-import avatar from '../../assets/avatar-girl.png';
+// import avatar from '../../assets/avatar-girl.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faPlusCircle,
@@ -28,7 +28,7 @@ const Dashboard = () => {
   //
   const { loading, exists } = useSelector((state) => state.profile);
   const { user } = useSelector((state) => state.auth);
-  const { name } = user;
+  const { name, avatar } = user;
 
   useEffect(() => {
     dispatch(getCurrentUser());
@@ -145,7 +145,7 @@ const Dashboard = () => {
                   onClick={() =>
                     naviagete('/create-profile')
                   }>
-                  Let's Beggin
+                  Let's Create
                 </button>
               </div>
             </div>

@@ -15,6 +15,8 @@ const TextArea = ({
   color,
   max = 100,
   width,
+  focus = false,
+  children,
 }) => {
   return (
     <>
@@ -26,7 +28,7 @@ const TextArea = ({
         value={value}
         maxLength={max}
         style={{ width }}
-
+        autoFocus={focus}
       />
       {(error || tip) && (
         <div className='error-sec'>
@@ -40,6 +42,7 @@ const TextArea = ({
           </p>
         </div>
       )}
+      {children}
     </>
   );
 };

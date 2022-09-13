@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { faEye, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -12,27 +12,35 @@ import Submit from '../../../components/Form/Input/Submit';
 const SignIn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [loadingComp, setLoadingComp] = useState(true)
   const [formData, setFormdata] = useState({
     email: '',
     password: '',
   });
 
-  const { user, isLoading, isError, isSuccess, message } = useSelector(
+  const { user, isLoading, isError, isSuccess, message, isAuthenticated } = useSelector(
     (state) => state.auth
   );
   const [showPassword, setShowPassword] = useState(false);
+  useEffect(() => setLoadingComp(false), [])
+
+  // 
+  const redirect = useCallback(() => {
+    if (user) navigate('/dashboard')
+  }, [user, navigate])
+
 
   useEffect(() => {
     if (isError) {
       toast.error(message);
     }
-    if (isSuccess) {
-      navigate('/dashboard');
-      // navigate('/profile');
-    }
-    dispatch(reset());
-  }, [user, navigate, isSuccess, isError, isLoading, dispatch, message]);
+    redirect()
 
+    dispatch(reset());
+  }, [redirect, isError, dispatch, message]);
+
+
+  // 
   const { email, password } = formData;
   const handleChange = (e) => {
     setFormdata((prev) => {
@@ -56,8 +64,10 @@ const SignIn = () => {
       password: '',
     });
   };
+
+
   // will change later
-  if (isLoading) {
+  if (loadingComp) {
     return <h4>loading...</h4>;
   }
   return (

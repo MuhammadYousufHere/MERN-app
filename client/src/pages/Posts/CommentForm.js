@@ -1,36 +1,72 @@
 import React, { useState, useEffect } from 'react';
 
 import './CommentForm.scss';
-import TextArea from '../../components/Form/Input/TextArea';
-import avatar from '../../assets/avatar/name3.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const CommentForm = () => {
-    const [typeComment, setTypeComment] = useState({
-        comment: '',
+import { faImage, faPaperPlane, faSmile } from '@fortawesome/free-solid-svg-icons';
+import { toast } from 'react-toastify';
+import Input from '../../components/Form/Input/Input';
+import { useDispatch } from 'react-redux';
+import { commentOnPost } from '../../features/postSlice';
+
+const CommentForm = ({ avatar, postID }) => {
+  const dispatch = useDispatch()
+
+  const [typeComment, setTypeComment] = useState({
+    text: '',
+  });
+  const { text } = typeComment;
+  const handleChange = (e) => {
+    setTypeComment((prevState) => {
+      return { ...prevState, [e.target.name]: e.target.value };
     });
-    const { comment } = typeComment;
-    const handleChange = (e) => {
-        setTypeComment((prevState) => {
-            return { ...prevState, [e.target.name]: e.target.value };
-        });
-    };
-    return (
-        <div className='comment-form-container'>
-            <div className='comment-form-body'>
-                <div className='avatar'>
-                    <img src={avatar} alt='avatar' />
-                </div>
-                <form>
-                    <TextArea
-                        name='comment'
-                        value={comment}
-                        placeholder='Type your comment...'
-                        onChange={handleChange}
-                    />
-                </form>
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    if (!text) {
+      return null
+    } else {
+      dispatch(commentOnPost({
+        id: postID,
+        comment: typeComment
+      }))
+      setTypeComment({
+        text: ''
+      })
+    }
+
+  }
+  return (
+    <div className='comment-form-container'>
+      <div className='comment-form-body'>
+
+        <form onSubmit={handleSubmit}>
+
+          <Input
+            name='text'
+            value={text}
+            placeholder='Type your comment...'
+            onChange={handleChange} />
+          <div className="actions">
+            <div className="left">
+              <button type="file">
+                <FontAwesomeIcon icon={faImage} size='2x' />
+              </button>
+              <button >
+                <FontAwesomeIcon icon={faSmile} size='2x' />
+              </button>
             </div>
-        </div>
-    );
+            <div className="right">
+              <button type="submit">
+                <FontAwesomeIcon icon={faPaperPlane} size='2x' />
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
 };
 
 export default CommentForm;

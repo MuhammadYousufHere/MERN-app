@@ -1,5 +1,5 @@
 import dashboard from '../../assets/icons/dashboard.svg';
-// import datas from '../../assets/icons/datas.svg';
+import datas from '../../assets/icons/datas.svg';
 import lock from '../../assets/icons/lock.svg';
 import project from '../../assets/icons/project.svg';
 // import send from '../../assets/icons/send.svg';
@@ -27,23 +27,34 @@ export const SidebarData = [
     iconLock: lock,
     link: '/signin',
   },
-  // {
-  //     title: 'Logout',
-  //     icon: project,
-  //     iconLock: lock,
 
-  //     link: '/',
-  // },
-  // {
-  //     title: 'Reports',
-  //     icon: datas,
-  //     iconLock: lock,
-  //     link: '/user-screen',
-  // },
-  // {
-  //     title: 'Messages',
-  //     icon: send,
-  //     iconLock: lock,
-  //     link: '/admin',
-  // },
+];
+export const SidebarPR = [
+
+
+  {
+    title: 'Feed',
+    icon: rocket,
+    iconLock: lock,
+    link: '/posts',
+  },
+  {
+    title: 'Profile',
+    icon: project,
+    iconLock: lock,
+    link: '/profile',
+  },
+  {
+    title: 'Dashboard',
+    icon: datas,
+    iconLock: lock,
+    link: '/dashboard',
+  },
+  {
+    title: 'Developers',
+    icon: dashboard,
+    iconLock: lock,
+    link: '/developers',
+  },
+
 ];

@@ -17,6 +17,7 @@ import authHeader from './features/util';
 import AddExperience from './pages/CreateProfile/AddExperience';
 import AddEducation from './pages/CreateProfile/AddEducation';
 import Developers from './pages/Developers/Developers';
+import CommentSection from './pages/Comment/CommentSection';
 const App = () => {
   return (
     <React.Fragment>
@@ -29,6 +30,7 @@ const App = () => {
 
         <Route element={<PrivateRoute />}>
           <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/comment-section' element={<CommentSection />} />
           <Route path='/posts' element={<Posts />} />
           <Route path='/add-education' element={<AddEducation />} />
           <Route path='/add-experience' element={<AddExperience />} />

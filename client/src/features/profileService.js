@@ -113,6 +113,17 @@ const deleteUserEducation = async (eduID) => {
   }
 }
 
+const getUserGithubRepos = async (githubusername) => {
+  try {
+    const res = await axios.get(API_URL + `/github/${githubusername}`, { headers: authHeader() })
+    return res.data
+  } catch (error) {
+    const msg = error.response.data
+    const status = error.response.status
+    return { msg, status }
+  }
+}
+
 const profileService = {
   getCurrentProfile,
   deleteUserProfile,
@@ -123,5 +134,6 @@ const profileService = {
   deleteUserExperiance,
   addUserEducation,
   deleteUserEducation,
+  getUserGithubRepos
 };
 export default profileService;
